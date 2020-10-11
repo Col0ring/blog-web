@@ -1,0 +1,57 @@
+@import '~@/variable.less';
+
+.navbarWrapper {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.08);
+  .navbar {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    height: 60px;
+    padding: 10px 16px;
+    padding-bottom: 0;
+    @media screen and (max-width: @screen-md-min) {
+      & {
+        height: 70px;
+      }
+    }
+    .logoContainer {
+      height: 100%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: stretch;
+      .trigger {
+        padding: 0 16px 0 0;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 18px;
+        transition: color 0.3s;
+        &:hover {
+          color: @primary-color;
+        }
+      }
+    }
+    .menuContainer {
+      flex: 1;
+      width: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      //   :global {
+      //     .ant-menu {
+      //       max-width: 100%;
+      //     }
+      //   }
+      @media screen and (max-width: @screen-md-min) {
+        & {
+          overflow: visible;
+        }
+      }
+    }
+  }
+}
