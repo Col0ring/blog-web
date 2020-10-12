@@ -1,16 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Input, AutoComplete } from 'antd';
+import { AutoComplete } from 'antd';
 import classnames from 'classnames';
 import { SearchOutlined } from '@ant-design/icons';
 import styles from './search.less';
 export interface SearchProps {
-  hide: boolean;
+  hide?: boolean;
+  className?: string;
 }
 
-const Search: React.FC<SearchProps> = ({ hide }) => {
+const Search: React.FC<SearchProps> = ({ hide, className }) => {
   const [active, setActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const searchBoxClassName = classnames(styles.searchBox, {
+  const searchBoxClassName = classnames(styles.searchBox, className, {
     [styles.md]: hide,
     [styles.active]: active,
   });
@@ -21,17 +22,6 @@ const Search: React.FC<SearchProps> = ({ hide }) => {
   }, [active]);
   return (
     <AutoComplete className={styles.search}>
-      {/* <Input
-        prefix={
-          <SearchOutlined
-            className={styles.searchIcon}
-            onClick={() => {
-              console.log(123);
-              setActive(!active);
-            }}
-          />
-        }
-      /> */}
       <div>
         <div className={searchBoxClassName}>
           <SearchOutlined

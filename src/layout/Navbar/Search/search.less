@@ -3,6 +3,7 @@
   .searchBox {
     @search-width: 180px;
     @search-height: 40px;
+    @input-padding: 30px;
     position: relative;
     width: @search-width;
     height: @search-height;
@@ -37,7 +38,7 @@
       border: 1px solid @normal-color;
       font-size: 14px;
       line-height: @search-height;
-      padding: 0 26px 0;
+      padding: 0 @input-padding 0;
       border-radius: 50px;
       outline: none;
       background: @white;
@@ -60,7 +61,7 @@
     &.active {
       width: @search-width;
       input {
-        padding: 0 26px 0;
+        padding: 0 @input-padding 0;
         border-radius: 50px;
         &:hover {
           cursor: text;

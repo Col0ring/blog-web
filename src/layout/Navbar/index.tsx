@@ -9,56 +9,73 @@ import {
 } from '@ant-design/icons';
 import Logo from './Logo';
 import Search from './Search';
+import DropdownMenu from './DropdownMenu/index';
 import styles from './navbar.less';
 
-export interface NavbarProps {}
-const Navbar: React.FC<NavbarProps> = () => {
-  const [collapsed, setCollapsed] = useState(false);
+const Navbar: React.FC = () => {
+  const [collapsed, setCollapsed] = useState(true);
   const responsive = useResponsive();
+  // 解决服务端报错问题
   const md = responsive ? responsive.md : false;
   const sm = responsive ? responsive.sm : false;
+
   return (
     // 服务端渲染的 bug
-    <Affix offsetTop={0} target={() => (window ? window : null)}>
-      <div className={styles.navbarWrapper}>
-        <div className={styles.navbar}>
-          <div className={styles.logoContainer}>
-            {!md && (
-              <div className={styles.trigger}>
-                {React.createElement(
-                  collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-                  {
-                    onClick: () => {
-                      setCollapsed(!collapsed);
+    <>
+      <Affix
+        offsetTop={0}
+        className={styles.affix}
+        target={() => (window ? window : null)}
+      >
+        <div className={styles.navbarWrapper}>
+          <div className={styles.navbar}>
+            <div className={styles.logoContainer}>
+              {!md && (
+                <div className={styles.trigger}>
+                  {React.createElement(
+                    collapsed ? MenuFoldOutlined : MenuUnfoldOutlined,
+                    {
+                      rotate: -90,
+                      onClick: () => {
+                        setCollapsed(!collapsed);
+                      },
                     },
-                  },
-                )}
-              </div>
-            )}
-            <Logo />
-          </div>
-          <div className={styles.menuContainer}>
-            <Search hide={!sm} />
-            {md && (
-              <Menu mode="horizontal">
-                <Menu.Item key="mail" icon={<MailOutlined />}>
-                  Navigation One
-                </Menu.Item>
-                <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
-                  Navigation Two
-                </Menu.Item>
-                <Menu.Item key="mail" icon={<MailOutlined />}>
-                  Navigation One
-                </Menu.Item>
-                <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
-                  Navigation Two
-                </Menu.Item>
-              </Menu>
-            )}
+                  )}
+                </div>
+              )}
+              <Logo />
+            </div>
+            <div className={styles.menuContainer}>
+              <Search hide={!sm} />
+              {md && (
+                <Menu mode="horizontal">
+                  <Menu.Item key="mail" icon={<MailOutlined />}>
+                    Navigation One
+                  </Menu.Item>
+                  <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
+                    Navigation Two
+                  </Menu.Item>
+                  <Menu.Item key="mail" icon={<MailOutlined />}>
+                    Navigation One
+                  </Menu.Item>
+                  <Menu.Item key="app" disabled icon={<AppstoreOutlined />}>
+                    Navigation Two
+                  </Menu.Item>
+                </Menu>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </Affix>
+      </Affix>
+      {!md && (
+        <DropdownMenu
+          onClose={() => {
+            setCollapsed(true);
+          }}
+          visible={!collapsed}
+        />
+      )}
+    </>
   );
 };
 

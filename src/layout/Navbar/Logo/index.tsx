@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import styles from './logo.less';
-interface LogoProps {
+export interface LogoProps {
   className?: string;
 }
 
