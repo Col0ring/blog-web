@@ -1,15 +1,1 @@
-# umi project
-
-## Getting Started
-
-Install dependencies,
-
-```bash
-$ yarn
-```
-
-Start the dev server,
-
-```bash
-$ yarn start
-```
+我的博客项目前端，采用 `umi` + `ssr` 开发，事情比较多，会断断续续的写，现在还是页面开发阶段。后端会使用`nestjs`，有兴趣的小伙伴可以关注本仓库。
