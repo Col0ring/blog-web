@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import classnames from 'classnames';
-import { useResponsive } from 'ahooks';
 import { Menu, Affix, Input } from 'antd';
 import {
   FileTextOutlined,
@@ -13,7 +12,9 @@ import Logo from './Logo';
 import Search from './Search';
 import DropdownMenu from './DropdownMenu';
 import styles from './navbar.less';
+import useSsrResponsive from '@/hooks/useSSrResponsive';
 import useDocScroll from '@/hooks/useDocScroll';
+import useWindow from '@/hooks/useWindow';
 
 interface NavMenuProps {
   mode?: 'horizontal' | 'inline';
@@ -45,8 +46,9 @@ const NavMenu: React.FC<NavMenuProps> = ({ mode = 'horizontal', onClick }) => {
 
 const Navbar: React.FC = () => {
   const [collapsed, setCollapsed] = useState(true);
-  const { md, sm, xs } = useResponsive();
+  const { md, sm, xs } = useSsrResponsive();
   const [scrollDown, setScrollDown] = useState(false);
+  const win = useWindow();
   const affixClassName = classnames(styles.affix, {
     [styles.scrollDown]: scrollDown,
   });
@@ -74,11 +76,11 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <Affix offsetTop={0} className={affixClassName}>
+      <Affix offsetTop={0} className={affixClassName} target={() => win}>
         <nav className={navbarWrapperClassName}>
           <div className={styles.navbar}>
             <div className={styles.logoContainer}>
-              {!md && (
+              {!md && win && (
                 <div className={styles.trigger}>
                   <MenuOutlined
                     onClick={() => {
@@ -89,7 +91,7 @@ const Navbar: React.FC = () => {
               )}
               <Logo />
             </div>
-            {xs && (
+            {xs && win && (
               <div className={styles.menuContainer}>
                 <Search hide={!sm} />
                 {md && <NavMenu />}
@@ -98,7 +100,7 @@ const Navbar: React.FC = () => {
           </div>
         </nav>
       </Affix>
-      {!md && (
+      {!md && win && (
         <DropdownMenu
           onClose={() => {
             setCollapsed(true);

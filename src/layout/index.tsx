@@ -1,16 +1,26 @@
 import React from 'react';
 import Navbar from './Navbar';
+import Footer from './Footer';
+import AppMain from './AppMain';
 import useWindow from '@/hooks/useWindow';
 import GlobalLoading from '@/components/GlobalLoading';
-const Layout: React.FC = () => {
+import { DynamicLoadWrapper } from '@/components/DynamicLoad';
+import styles from './index.less';
+const Bg = DynamicLoadWrapper({
+  path: 'layout/Bg.tsx',
+});
+const Layout: React.FC = ({ children }) => {
   const win = useWindow();
-  return win ? (
+  return (
     <>
-      <Navbar />
-      <div style={{ height: '900vh', position: 'relative' }}>Hello world</div>
+      <div className={styles.appWrapper}>
+        <Navbar />
+        <AppMain>{children}</AppMain>
+        <Bg />
+        <Footer />
+      </div>
+      {!win && <GlobalLoading />}
     </>
-  ) : (
-    <GlobalLoading />
   );
 };
 
