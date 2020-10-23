@@ -1,7 +1,6 @@
 import React from 'react';
-import { Drawer, Menu } from 'antd';
+import { Drawer } from 'antd';
 import { DrawerProps } from 'antd/es/drawer';
-import styles from './dropdown-menu.less';
 export interface DropdownMenuProps extends DrawerProps {
   onClose: NonNullable<DrawerProps['onClose']>;
   visible: boolean;
@@ -9,21 +8,23 @@ export interface DropdownMenuProps extends DrawerProps {
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({
   onClose,
+  children,
   visible,
+  footer,
   ...rest
 }) => {
   return (
     <Drawer
+      closable={false}
       visible={visible}
       onClose={onClose}
+      footer={footer}
       placement="top"
       {...rest}
-      className={styles.dropdownMenu}
+      height="auto"
+      drawerStyle={{ paddingTop: 70, maxHeight: '100vh' }}
     >
-      <Menu>
-        <Menu.Item key="mail">Navigation One</Menu.Item>
-        <Menu.Item>Navigation Two</Menu.Item>
-      </Menu>
+      {children}
     </Drawer>
   );
 };

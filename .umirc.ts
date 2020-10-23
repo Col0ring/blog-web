@@ -14,7 +14,7 @@ export default defineConfig({
   outputPath: outputPath,
   publicPath: path,
   ssr: {
-    devServerRender: false,
+    // devServerRender: false,
   },
   dynamicImport: {
     loading: '@/components/GlobalLoading',

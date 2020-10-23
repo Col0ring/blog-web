@@ -1,28 +1,48 @@
 @import '~@/variable.less';
 
+@bottom-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.08);
+@transition-duration: 0.5s;
+@transition-delay: 0s;
 .affix {
+  height: 60px;
+  @media screen and (max-width: @screen-md-min) {
+    & {
+      height: 70px;
+    }
+  }
   position: relative;
   z-index: 1001;
+  transition: opacity @transition-duration linear @transition-delay;
+  opacity: 1;
+  > div {
+    height: 100%;
+  }
+
+  &.scrollDown {
+    opacity: 0;
+  }
 }
 
 .navbarWrapper {
+  overflow: hidden;
   width: 100%;
+  height: 100%;
   background: #fff;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: @bottom-shadow;
+  transform: translateY(0);
+  transition: transform @transition-duration linear @transition-delay;
+  &.scrollDown {
+    transform: translateY(-100%);
+  }
   .navbar {
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
     margin: auto;
-    height: 60px;
+    height: 100%;
     padding: 10px 16px;
     padding-bottom: 0;
-    @media screen and (max-width: @screen-md-min) {
-      & {
-        height: 70px;
-      }
-    }
     .logoContainer {
       height: 100%;
       flex-shrink: 0;
@@ -56,6 +76,15 @@
         & {
           overflow: visible;
         }
+      }
+    }
+  }
+}
+.navMenu {
+  :global {
+    .ant-menu-item {
+      &::after {
+        border: none;
       }
     }
   }
