@@ -14,9 +14,9 @@ const Layout: React.FC = ({ children }) => {
   return (
     <>
       <div className={styles.appWrapper}>
+        <Bg />
         <Navbar />
         <AppMain>{children}</AppMain>
-        <Bg />
         <Footer />
       </div>
       {!win && <GlobalLoading />}

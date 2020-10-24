@@ -11,6 +11,7 @@ const Home: PageComponent = () => {
         <title>Hello Umi Bar Title</title>
       </Helmet>
       <div>
+        ads
         <MyHome />
       </div>
     </>
