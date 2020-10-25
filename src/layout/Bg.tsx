@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ParticlesBg from 'particles-bg';
 import useWindow from '@/hooks/useWindow';
 const Bg: React.FC = () => {

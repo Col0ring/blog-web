@@ -16,8 +16,10 @@ const NewArticleCard: React.FC<NewArticleCardProps> = ({ artileList = [] }) => {
     <ul className={styles.newArticleCard}>
       {artileList.map(article => {
         return (
-          <li className={styles.item}>
-            <Link to={'/article/' + article.id}>{article.title}</Link>
+          <li key={article.id} className={styles.item}>
+            <Link className="c-text-cut" to={'/article/' + article.id}>
+              {article.title}
+            </Link>
           </li>
         );
       })}

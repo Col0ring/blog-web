@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, Tag } from 'antd';
+import { Image, Tag, Space } from 'antd';
+import { FieldTimeOutlined } from '@ant-design/icons';
 import styles from './article-card.less';
 import { Link } from 'umi';
 
@@ -37,6 +38,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
       <div className={styles.content}>
         <h4 className={`${styles.title} c-text-cut`}>{title}</h4>
         <p className={`${styles.desc} c-text-cut`}>{desc}</p>
+
         <div className={styles.tags}>
           {tags.map(tag => {
             return (
@@ -50,6 +52,12 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
               </Tag>
             );
           })}
+        </div>
+        <div className={styles.time}>
+          <Space size="small">
+            <FieldTimeOutlined />
+            <span>2020-08-13</span>
+          </Space>
         </div>
       </div>
     </div>

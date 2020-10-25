@@ -14,12 +14,14 @@ import { PageComponent } from '@/interface/Page';
 import BulletinBoardCard from './components/BulletinBoardCard';
 import NewArticleCard from './components/NewArticleCard';
 import TagCard from './components/TagCard/index';
+import useSsrResonsive from '@/hooks/useSSrResponsive';
 
 interface HomeProps extends IRouteComponentProps {
   articleList: ArticleCardProps[];
 }
 
 const Home: PageComponent<HomeProps> = ({ articleList = [] }) => {
+  const { md } = useSsrResonsive();
   return (
     <div className="c-margin-t-lg">
       <Row gutter={[30, 10]}>
@@ -31,16 +33,19 @@ const Home: PageComponent<HomeProps> = ({ articleList = [] }) => {
             order: 1,
           }}
         >
-          <BlogCard
-            title={
-              <Space className="c-text-xl">
-                <FireFilled />
-                置顶文章
-              </Space>
-            }
-          >
-            {/* <ArticleCard /> */}
-          </BlogCard>
+          {md && (
+            <BlogCard
+              title={
+                <Space className="c-text-xl">
+                  <FireFilled />
+                  置顶文章
+                </Space>
+              }
+            >
+              {/* <ArticleCard /> */}
+            </BlogCard>
+          )}
+
           <BlogCard
             title={
               <Space className="c-text-xl">
@@ -140,5 +145,4 @@ Home.getInitialProps = async () => {
     }),
   };
 };
-
 export default Home;

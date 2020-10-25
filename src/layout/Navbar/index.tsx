@@ -24,11 +24,13 @@ const Navbar: React.FC = () => {
   });
   const scrollOptions = useMemo(() => {
     return {
-      scrollDown: () => {
-        setScrollDown(true);
+      scrollDown: (value: number) => {
+        if (value > 60) {
+          setScrollDown(true);
+        }
       },
       upDelay: 200,
-      scrollUp: () => {
+      scrollUp: (value: number) => {
         setScrollDown(false);
       },
       downDelay: 200,

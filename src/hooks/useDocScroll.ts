@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDebounceFn } from 'ahooks';
 interface useDocScrollProps {
-  scrollUp?: () => void;
+  scrollUp?: (value: number) => void;
   upDelay?: number;
-  scrollDown?: () => void;
+  scrollDown?: (value: number) => void;
   downDelay?: number;
 }
 const useDocScroll = ({
@@ -21,10 +21,10 @@ const useDocScroll = ({
   let beforeValue = 0;
   const scrollListener = () => {
     const afterValue = document.scrollingElement!.scrollTop;
-    if (afterValue - beforeValue >= 0) {
-      scrollDownCb.run();
+    if (afterValue - beforeValue > 0) {
+      scrollDownCb.run(afterValue);
     } else {
-      scrollUpCb.run();
+      scrollUpCb.run(afterValue);
     }
     beforeValue = afterValue;
   };

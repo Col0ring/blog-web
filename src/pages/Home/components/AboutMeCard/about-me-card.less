@@ -6,6 +6,10 @@
     .avatar {
       width: 100px;
       height: 100px;
+      transition: transform 1s ease-in;
+      &:hover {
+        transform: rotate(360deg);
+      }
     }
     .name {
       margin: 5px 0;
@@ -21,7 +25,7 @@
     display: flex;
     justify-content: center;
     .content {
-      margin: 0 20px;
+      margin: 0 10px;
       display: flex;
       flex-direction: column;
       text-align: center;
