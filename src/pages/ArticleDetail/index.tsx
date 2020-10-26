@@ -1,6 +1,9 @@
 import React from 'react';
+import { Row, Col } from 'antd';
 import { PageComponent } from '@/interface/Page';
 import { TagProps } from '@/interface/Data';
+import ArticleCard from './components/ArticleCard';
+import SsrQueueAnim from '@/components/SsrQueueAnim';
 import styles from './article-detail.less';
 
 interface ArticleProps {
@@ -17,7 +20,26 @@ interface ArticleDetailProps {
 }
 
 const ArticleDetail: PageComponent<ArticleDetailProps> = ({ article }) => {
-  return <div>article</div>;
+  return (
+    <SsrQueueAnim>
+      <Row>
+        <Col
+          span={24}
+          md={{
+            span: 17,
+          }}
+        >
+          <ArticleCard article={article} />
+        </Col>
+        <Col
+          span={0}
+          md={{
+            span: 7,
+          }}
+        ></Col>
+      </Row>
+    </SsrQueueAnim>
+  );
 };
 
 ArticleDetail.getInitialProps = async () => {

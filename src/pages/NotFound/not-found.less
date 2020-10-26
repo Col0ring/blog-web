@@ -1,10 +1,17 @@
+@import '~@/variable.less';
+
 .notFound {
-  margin: -10px;
+  margin: -15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
   background-color: rgba(255, 255, 255, 0.8);
+  min-height: calc(100vh - 60px - 60px);
+  @media screen and (max-width: @screen-md-min) {
+    & {
+      min-height: calc(100vh - 70px - 60px);
+    }
+  }
   .icon {
     color: #eb3223;
   }

@@ -1,13 +1,15 @@
 @import '~@/variable.less';
 .appMain {
+  position: relative;
   padding: 15px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  min-height: calc(100vh - 60px - 60px);
   background-color: transparent;
+  min-height: calc(100vh - 60px - 60px);
   @media screen and (max-width: @screen-md-min) {
     & {
+      padding: 15px 0;
       min-height: calc(100vh - 70px - 60px);
     }
   }

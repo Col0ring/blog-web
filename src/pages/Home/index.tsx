@@ -15,6 +15,7 @@ import NewArticleListCard, {
 import TagCard from './components/TagCard/index';
 import useSsrResonsive from '@/hooks/useSSrResponsive';
 import GlobalHelmet from '@/components/GlobalHelmet';
+import SsrQueueAnim from '@/components/SsrQueueAnim';
 
 type HomeProps = ArticleListCardProps &
   NewArticleCardProps &
@@ -27,43 +28,41 @@ const Home: PageComponent<HomeProps> = ({
 }) => {
   const { md } = useSsrResonsive();
   return (
-    <>
+    <SsrQueueAnim>
       <GlobalHelmet></GlobalHelmet>
-      <div className="c-margin-t-lg">
-        <Row gutter={[30, 10]}>
-          <Col
-            span={24}
-            order={2}
-            md={{
-              span: 17,
-              order: 1,
-            }}
-          >
-            {md && <TopArticleCard topArticleList={topArticleList} />}
+      <Row key="home" gutter={[30, 10]}>
+        <Col
+          span={24}
+          order={2}
+          md={{
+            span: 17,
+            order: 1,
+          }}
+        >
+          {md && <TopArticleCard topArticleList={topArticleList} />}
 
-            <ArticleListCard articleList={articleList} />
-          </Col>
-          <Col
-            span={24}
-            order={1}
-            md={{
-              order: 2,
-              span: 7,
-            }}
-          >
-            <AboutMeCard />
+          <ArticleListCard articleList={articleList} />
+        </Col>
+        <Col
+          span={24}
+          order={1}
+          md={{
+            order: 2,
+            span: 7,
+          }}
+        >
+          <AboutMeCard />
 
-            <BulletinBoardCard />
+          <BulletinBoardCard />
 
-            <TagCard />
+          <TagCard />
 
-            {!md && <TopArticleCard topArticleList={topArticleList} />}
+          {!md && <TopArticleCard topArticleList={topArticleList} />}
 
-            <NewArticleListCard newArticleList={newArticleList} />
-          </Col>
-        </Row>
-      </div>
-    </>
+          <NewArticleListCard newArticleList={newArticleList} />
+        </Col>
+      </Row>
+    </SsrQueueAnim>
   );
 };
 

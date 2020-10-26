@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .title {
+    word-break: break-all;
+    font-size: 20px;
+  }
+  .meta {
+    color: #aaa;
+    margin: 0.8em 0;
+  }
+  .tags {
+    line-height: 20px;
+    display: flex;
+    vertical-align: top;
+    .label {
+      flex-shrink: 0;
+      margin-right: 10px;
+      margin-top: 7px;
+    }
+    :global {
+      .ant-tag {
+        margin-top: 7px;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Tag, Space } from 'antd';
 import { FieldTimeOutlined } from '@ant-design/icons';
-import { Link } from 'umi';
+import { Link, useHistory } from 'umi';
 import { formatTime } from '@/utils/time';
 import { TagProps } from '@/interface/Data';
 import styles from './article-card.less';
@@ -22,8 +22,14 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   time,
   tags = [],
 }) => {
+  const history = useHistory();
   return (
-    <div className={styles.articleCard}>
+    <div
+      className={styles.articleCard}
+      onClick={() => {
+        history.push('/article/1');
+      }}
+    >
       {img && (
         <Image
           preview={false}
@@ -37,7 +43,12 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
         <h4 className={`${styles.title} c-text-cut`}>{title}</h4>
         <p className={`${styles.desc} c-text-cut`}>{desc}</p>
 
-        <div className={styles.tags}>
+        <div
+          className={styles.tags}
+          onClick={e => {
+            e.stopPropagation();
+          }}
+        >
           {tags.map(tag => {
             return (
               <Tag key={tag.name} color={tag.color}>
