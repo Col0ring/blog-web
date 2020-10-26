@@ -1,8 +1,9 @@
 import React from 'react';
 import { Image, Tag, Space } from 'antd';
 import { FieldTimeOutlined } from '@ant-design/icons';
-import styles from './article-card.less';
 import { Link } from 'umi';
+import { formatTime } from '@/utils/time';
+import styles from './article-card.less';
 
 interface TagProps {
   name: string;
@@ -12,6 +13,7 @@ interface TagProps {
 
 export interface ArticleCardProps {
   id: string | number;
+  time?: number;
   img?: string;
   title?: string;
   desc?: string;
@@ -22,6 +24,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   title,
   desc,
   img,
+  time,
   tags = [],
 }) => {
   return (
@@ -53,12 +56,14 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
             );
           })}
         </div>
-        <div className={styles.time}>
-          <Space size="small">
-            <FieldTimeOutlined />
-            <span>2020-08-13</span>
-          </Space>
-        </div>
+        {time && (
+          <div className={styles.time}>
+            <Space size="small">
+              <FieldTimeOutlined />
+              <span>{formatTime(time)}</span>
+            </Space>
+          </div>
+        )}
       </div>
     </div>
   );

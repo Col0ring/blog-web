@@ -1,127 +1,78 @@
 import React from 'react';
-import { IRouteComponentProps } from 'umi';
-import { Row, Col, Space } from 'antd';
-import {
-  NotificationFilled,
-  FireFilled,
-  FileDoneOutlined,
-  TagFilled,
-} from '@ant-design/icons';
-import BlogCard from '@/components/BlogCard';
-import ArticleCard, { ArticleCardProps } from './components/ArticleCard';
+import { Row, Col } from 'antd';
+import ArticleListCard, {
+  ArticleListCardProps,
+} from './components/ArticleListCard';
+import TopArticleCard, {
+  TopArticleCardProps,
+} from './components/TopArticleCard';
 import AboutMeCard from './components/AboutMeCard';
 import { PageComponent } from '@/interface/Page';
 import BulletinBoardCard from './components/BulletinBoardCard';
-import NewArticleCard from './components/NewArticleCard';
+import NewArticleListCard, {
+  NewArticleCardProps,
+} from './components/NewArticleListCard';
 import TagCard from './components/TagCard/index';
 import useSsrResonsive from '@/hooks/useSSrResponsive';
+import GlobalHelmet from '@/components/GlobalHelmet';
 
-interface HomeProps extends IRouteComponentProps {
-  articleList: ArticleCardProps[];
-}
+type HomeProps = ArticleListCardProps &
+  NewArticleCardProps &
+  TopArticleCardProps;
 
-const Home: PageComponent<HomeProps> = ({ articleList = [] }) => {
+const Home: PageComponent<HomeProps> = ({
+  articleList = [],
+  newArticleList = [],
+  topArticleList = [],
+}) => {
   const { md } = useSsrResonsive();
   return (
-    <div className="c-margin-t-lg">
-      <Row gutter={[30, 10]}>
-        <Col
-          span={24}
-          order={2}
-          md={{
-            span: 17,
-            order: 1,
-          }}
-        >
-          {md && (
-            <BlogCard
-              title={
-                <Space className="c-text-xl">
-                  <FireFilled />
-                  置顶文章
-                </Space>
-              }
-            >
-              {/* <ArticleCard /> */}
-            </BlogCard>
-          )}
-
-          <BlogCard
-            title={
-              <Space className="c-text-xl">
-                <FireFilled />
-                热门文章
-              </Space>
-            }
+    <>
+      <GlobalHelmet></GlobalHelmet>
+      <div className="c-margin-t-lg">
+        <Row gutter={[30, 10]}>
+          <Col
+            span={24}
+            order={2}
+            md={{
+              span: 17,
+              order: 1,
+            }}
           >
-            {articleList.map(article => {
-              return (
-                <ArticleCard
-                  id={article.id}
-                  key={article.id}
-                  img={article.img}
-                  desc={article.desc}
-                  title={article.title}
-                  tags={article.tags}
-                />
-              );
-            })}
-          </BlogCard>
-        </Col>
-        <Col
-          span={24}
-          order={1}
-          md={{
-            order: 2,
-            span: 7,
-          }}
-        >
-          <BlogCard>
+            {md && <TopArticleCard topArticleList={topArticleList} />}
+
+            <ArticleListCard articleList={articleList} />
+          </Col>
+          <Col
+            span={24}
+            order={1}
+            md={{
+              order: 2,
+              span: 7,
+            }}
+          >
             <AboutMeCard />
-          </BlogCard>
 
-          <BlogCard
-            title={
-              <Space className="c-text-xl">
-                <NotificationFilled />
-                博客公告
-              </Space>
-            }
-          >
             <BulletinBoardCard />
-          </BlogCard>
 
-          <BlogCard
-            title={
-              <Space className="c-text-xl">
-                <TagFilled />
-                相关标签
-              </Space>
-            }
-          >
             <TagCard />
-          </BlogCard>
 
-          <BlogCard
-            title={
-              <Space className="c-text-xl">
-                <FileDoneOutlined />
-                最新文章
-              </Space>
-            }
-          >
-            <NewArticleCard artileList={articleList} />
-          </BlogCard>
-        </Col>
-      </Row>
-    </div>
+            {!md && <TopArticleCard topArticleList={topArticleList} />}
+
+            <NewArticleListCard newArticleList={newArticleList} />
+          </Col>
+        </Row>
+      </div>
+    </>
   );
 };
 
 Home.getInitialProps = async () => {
+  let key = 0;
   return {
-    articleList: new Array(8).fill({
-      id: 1,
+    topArticleList: new Array(1).fill(0).map(() => ({
+      id: key++,
+      time: Date.now(),
       img:
         'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
       title:
@@ -142,7 +93,55 @@ Home.getInitialProps = async () => {
           name: 'cyan',
         },
       ],
-    }),
+    })),
+    articleList: new Array(8).fill(0).map(() => ({
+      id: key++,
+      time: Date.now(),
+      img:
+        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      title:
+        'TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle',
+      desc:
+        '我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介',
+      tags: [
+        {
+          color: 'red',
+          name: 'red',
+        },
+        {
+          color: 'green',
+          name: 'green',
+        },
+        {
+          color: 'cyan',
+          name: 'cyan',
+        },
+      ],
+    })),
+    newArticleList: new Array(8).fill(0).map(() => ({
+      id: key++,
+      time: Date.now(),
+      img:
+        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      title:
+        'TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle',
+      desc:
+        '我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介',
+      tags: [
+        {
+          color: 'red',
+          name: 'red',
+        },
+        {
+          color: 'green',
+          name: 'green',
+        },
+        {
+          color: 'cyan',
+          name: 'cyan',
+        },
+      ],
+    })),
   };
 };
 export default Home;
