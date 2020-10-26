@@ -1,6 +1,6 @@
 import React from 'react';
 import { Space } from 'antd';
-import { FireFilled } from '@ant-design/icons';
+import { UpSquareFilled } from '@ant-design/icons';
 import BlogCard from '@/components/BlogCard';
 import ArticleCard, { ArticleCardProps } from '@/components/ArticleCard';
 
@@ -13,7 +13,7 @@ const TopArticleCard: React.FC<TopArticleCardProps> = ({ topArticleList }) => {
     <BlogCard
       title={
         <Space className="c-text-xl">
-          <FireFilled />
+          <UpSquareFilled />
           置顶文章
         </Space>
       }

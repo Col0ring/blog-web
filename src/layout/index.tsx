@@ -5,10 +5,12 @@ import AppMain from './AppMain';
 import useWindow from '@/hooks/useWindow';
 import GlobalLoading from '@/components/GlobalLoading';
 import { DynamicLoadWrapper } from '@/components/DynamicLoad';
+import Up from './Up';
 import styles from './index.less';
 const Bg = DynamicLoadWrapper({
   path: 'layout/Bg.tsx',
 });
+
 const Layout: React.FC = ({ children }) => {
   const win = useWindow();
   return (
@@ -18,6 +20,7 @@ const Layout: React.FC = ({ children }) => {
         <Navbar />
         <AppMain>{children}</AppMain>
         <Footer />
+        <Up />
       </div>
       {!win && <GlobalLoading />}
     </>

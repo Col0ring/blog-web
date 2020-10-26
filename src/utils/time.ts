@@ -12,7 +12,7 @@ export function parseTime(
     return '';
   }
   const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
-  let date;
+  let date: Date;
   if (typeof time === 'object') {
     date = time;
   } else {
@@ -51,12 +51,23 @@ export function parseTime(
 /**
  * @param {number} time
  * @param {string} option
+ * @param {boolean} zh
+ * @param {boolean} complete
  * @returns {string}
  */
 export function formatTime(
   time: number,
-  option: string = '{y}-{m}-{d} {h}:{i}:{s}',
+  option?: string,
+  zh: boolean = false,
+  complete: boolean = false,
 ): string | null {
+  if (!option && !zh) {
+    if (complete) {
+      option = '{y}-{m}-{d} {h}:{i}:{s}';
+    } else {
+      option = '{y}-{m}-{d}';
+    }
+  }
   if (('' + time).length === 10) {
     time = +time * 1000;
   } else {
@@ -83,19 +94,18 @@ export function formatTime(
   if (option) {
     return parseTime(time, option);
   } else {
-    return (
-      d.getFullYear() +
-      '年' +
-      d.getMonth() +
-      1 +
-      '月' +
-      d.getDate() +
-      '日' +
-      d.getHours() +
-      '时' +
-      d.getMinutes() +
-      '分'
-    );
+    return complete
+      ? d.getFullYear() +
+          '年' +
+          (d.getMonth() + 1) +
+          '月' +
+          d.getDate() +
+          '日' +
+          d.getHours() +
+          '时' +
+          d.getMinutes() +
+          '分'
+      : d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
   }
 }
 

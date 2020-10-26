@@ -1,6 +1,7 @@
 import { matchRoutes, RouteConfig } from 'react-router-config';
 import { configResponsive } from 'ahooks';
 import { routes } from './router';
+
 // 配置断点
 configResponsive({
   xs: 427,

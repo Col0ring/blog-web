@@ -3,19 +3,14 @@ import { Image, Tag, Space } from 'antd';
 import { FieldTimeOutlined } from '@ant-design/icons';
 import { Link } from 'umi';
 import { formatTime } from '@/utils/time';
+import { TagProps } from '@/interface/Data';
 import styles from './article-card.less';
-
-interface TagProps {
-  name: string;
-  href?: string;
-  color?: string;
-}
 
 export interface ArticleCardProps {
   id: string | number;
-  time?: number;
+  time: number;
   img?: string;
-  title?: string;
+  title: string;
   desc?: string;
   tags?: TagProps[];
 }
@@ -56,14 +51,12 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
             );
           })}
         </div>
-        {time && (
-          <div className={styles.time}>
-            <Space size="small">
-              <FieldTimeOutlined />
-              <span>{formatTime(time)}</span>
-            </Space>
-          </div>
-        )}
+        <div className={styles.time}>
+          <Space size="small">
+            <FieldTimeOutlined />
+            <span>{formatTime(time)}</span>
+          </Space>
+        </div>
       </div>
     </div>
   );

@@ -9,6 +9,10 @@ export const routes: IRoute[] = [
         component: '@/pages/Home',
       },
       {
+        path: '/article/:id',
+        component: '@/pages/ArticleDetail',
+      },
+      {
         path: '*',
         component: '@/pages/NotFound',
       },

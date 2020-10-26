@@ -120,7 +120,7 @@ Home.getInitialProps = async () => {
     })),
     newArticleList: new Array(8).fill(0).map(() => ({
       id: key++,
-      time: Date.now(),
+      time: Date.now() - 1000000000,
       img:
         'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
       title:
