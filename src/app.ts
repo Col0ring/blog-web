@@ -1,5 +1,8 @@
 import { matchRoutes, RouteConfig } from 'react-router-config';
 import { configResponsive } from 'ahooks';
+import { routes } from './router';
+
+// 配置断点
 configResponsive({
   xs: 427,
   sm: 576,
@@ -7,7 +10,6 @@ configResponsive({
   lg: 992,
   xl: 1200,
 });
-import { routes } from './router';
 export const ssr = {
   beforeRenderServer: async ({ context }: any) => {
     const { path } = context as {

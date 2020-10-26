@@ -3,7 +3,7 @@ import { routes } from './src/router';
 const outputPath = '/dist-web/';
 
 const env = process.env.NODE_ENV;
-const path = env === 'development' ? 'http://localhost:8000/' : outputPath;
+const path = env === 'development' ? '/' : outputPath;
 
 export default defineConfig({
   title: false,

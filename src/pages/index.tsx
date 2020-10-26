@@ -1,16 +1,15 @@
-import { Helmet } from 'umi';
 import React from 'react';
 import { PageComponent } from '@/interface/Page';
 import { DynamicLoadWrapper } from '@/components/DynamicLoad';
+import GlobalHelmet from '@/components/GlobalHelmet';
 
 const MyHome = DynamicLoadWrapper({ path: 'pages/Home' });
 const Home: PageComponent = () => {
   return (
     <>
-      <Helmet encodeSpecialCharacters={false}>
-        <title>Hello Umi Bar Title</title>
-      </Helmet>
+      <GlobalHelmet title="Hello"></GlobalHelmet>
       <div>
+        ads
         <MyHome />
       </div>
     </>

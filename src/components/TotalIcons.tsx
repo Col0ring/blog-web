@@ -5,6 +5,9 @@ import { AntdIconProps } from '@ant-design/icons/lib/components/AntdIcon';
 export interface TotalIconsProps extends AntdIconProps {
   name: string;
 }
+export const IconFont = AllIcons.createFromIconfontCN({
+  scriptUrl: ['//at.alicdn.com/t/font_2159589_zz7u6kf6zr.js'],
+});
 
 const TotalIcons: React.FC<TotalIconsProps> = ({ name, ...rest }) => {
   return name

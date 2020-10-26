@@ -3,10 +3,19 @@ export const routes: IRoute[] = [
   {
     path: '/',
     component: '@/layout',
-    exact: true,
-  },
-  {
-    path: '*',
-    component: '@/pages/index',
+    routes: [
+      {
+        path: '/',
+        component: '@/pages/Home',
+      },
+      {
+        path: '/article/:id',
+        component: '@/pages/ArticleDetail',
+      },
+      {
+        path: '*',
+        component: '@/pages/NotFound',
+      },
+    ],
   },
 ];

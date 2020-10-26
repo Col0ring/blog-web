@@ -1,4 +1,5 @@
 import { useResponsive } from 'ahooks';
+import useWindow from './useWindow';
 interface Responsive {
   xs: boolean;
   sm: boolean;
@@ -8,14 +9,15 @@ interface Responsive {
 }
 const useSsrResonsive = (): Responsive => {
   const responsive = (useResponsive() as unknown) as Responsive;
-  return responsive
+  const win = useWindow();
+  return responsive && win
     ? responsive
     : {
-        xs: false,
-        sm: false,
-        md: false,
-        lg: false,
-        xl: false,
+        xs: true,
+        sm: true,
+        md: true,
+        lg: true,
+        xl: true,
       };
 };
 
