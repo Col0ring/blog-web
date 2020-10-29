@@ -13,6 +13,10 @@ export const routes: IRoute[] = [
         component: '@/pages/ArticleDetail',
       },
       {
+        path: '/me',
+        component: '@/pages/Me',
+      },
+      {
         path: '*',
         component: '@/pages/NotFound',
       },

@@ -4,6 +4,7 @@ import { PageComponent } from '@/interface/Page';
 import { TagProps } from '@/interface/Data';
 import ArticleCard from './components/ArticleCard';
 import SsrQueueAnim from '@/components/SsrQueueAnim';
+import AboutMeCard from '@/components/AboutMeCard';
 import styles from './article-detail.less';
 
 interface ArticleProps {
@@ -22,7 +23,7 @@ interface ArticleDetailProps {
 const ArticleDetail: PageComponent<ArticleDetailProps> = ({ article }) => {
   return (
     <SsrQueueAnim>
-      <Row>
+      <Row gutter={20}>
         <Col
           span={24}
           md={{
@@ -36,7 +37,9 @@ const ArticleDetail: PageComponent<ArticleDetailProps> = ({ article }) => {
           md={{
             span: 7,
           }}
-        ></Col>
+        >
+          <AboutMeCard />
+        </Col>
       </Row>
     </SsrQueueAnim>
   );

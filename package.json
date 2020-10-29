@@ -21,6 +21,7 @@
     ]
   },
   "dependencies": {
+    "@ant-design/icons": "^4.2.2",
     "@ant-design/pro-layout": "^5.0.12",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.22",
@@ -33,10 +34,14 @@
     "rc-queue-anim": "^1.8.5",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-markdown": "^5.0.2",
+    "react-syntax-highlighter": "^15.2.1",
+    "remark-gfm": "^1.0.0",
     "umi": "^3.2.22",
     "yorkie": "^2.0.0"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.10"
+    "@types/classnames": "^2.2.10",
+    "@types/react-syntax-highlighter": "^13.5.0"
   }
 }

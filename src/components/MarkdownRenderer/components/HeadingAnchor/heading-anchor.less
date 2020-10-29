@@ -1,0 +1,35 @@
+@import '~@/variable.less';
+.generate-heading(@n, @i: 1) when (@i =< @n) {
+  h@{i} {
+    font-size: (30px - 4 * (@i - 1));
+    &:hover {
+      color: inherit;
+    }
+  }
+  .generate-heading(@n, (@i + 1));
+}
+
+.title {
+  margin: 20px 0;
+  display: block;
+  border-left: 4px solid @primary-color;
+  padding: 0 20px;
+
+  .generate-heading(6);
+  /*
+  // each(range(6), {
+  //     h@{value}{
+  //         font-size: (30px - 4 * (@value - 1));
+  //         &:hover{
+  //             color:inherit
+  //         }
+  //     }
+  //   });
+  */
+  h5 {
+    font-size: 16px;
+  }
+  h6 {
+    font-size: 14px;
+  }
+}
