@@ -71,6 +71,7 @@ const Navbar: React.FC = () => {
       </Affix>
       {!md && (
         <DropdownMenu
+          style={{ zIndex: 100 }}
           onClose={() => {
             setCollapsed(true);
           }}

@@ -1,30 +1,24 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  createContext,
-  useContext,
-  useCallback,
-  memo,
-} from 'react';
+import React, { useRef, createContext, useContext, useCallback } from 'react';
 import { last } from 'lodash';
 
-interface AnchorItem {
+export interface AnchorItem {
   anchor: string;
   level: number;
   title: string;
   children?: AnchorItem[];
 }
 
-type AnchorList = AnchorItem[]; // TOC目录树结构
+export type AnchorList = AnchorItem[]; // TOC目录树结构
 
 interface AnchorContextProps {
   list: AnchorList;
+  reset: () => void;
   add: (item: Omit<AnchorItem, 'children'>) => void;
 }
 
 const AnchorContext = createContext<AnchorContextProps>({
   list: [],
+  reset: () => {},
   add: () => {},
 });
 
@@ -33,16 +27,9 @@ export const useAnchor = () => {
   return context;
 };
 
-export const AnchorProvider: React.FC = memo(({ children }) => {
-  const [item, setItem] = useState<AnchorItem>({} as AnchorItem);
-  const visited = useRef<Record<string, boolean>>({});
+export const AnchorProvider: React.FC = ({ children }) => {
   const add: AnchorContextProps['add'] = useCallback(item => {
-    if (visited.current[item.anchor]) {
-      return;
-    } else {
-      visited.current[item.anchor] = true;
-    }
-    const list = value.current.list;
+    const list = contextValue.current.list;
     if (list.length === 0) {
       // 第一个 item 直接 push
       list.push(item);
@@ -50,7 +37,7 @@ export const AnchorProvider: React.FC = memo(({ children }) => {
       let lastItem = last<AnchorItem>(list)!; // 最后一个 item
       if (item.level > lastItem.level) {
         // item 是 lastItem 的 children
-        for (let i = lastItem.level + 1; i <= 2; i++) {
+        for (let i = lastItem.level + 1; i <= 6; i++) {
           const { children } = lastItem;
           if (!children) {
             // 如果 children 不存在
@@ -71,16 +58,18 @@ export const AnchorProvider: React.FC = memo(({ children }) => {
       }
     }
   }, []);
-  useEffect(() => {
-    add(item);
-  }, [item]);
-  const value = useRef<AnchorContextProps>({
-    add: setItem,
+  const reset = useCallback(() => {
+    contextValue.current.list = [];
+  }, []);
+  const contextValue = useRef<AnchorContextProps>({
+    add,
+    reset,
     list: [],
   });
+
   return (
-    <AnchorContext.Provider value={value.current}>
+    <AnchorContext.Provider value={contextValue.current}>
       {children}
     </AnchorContext.Provider>
   );
-});
+};

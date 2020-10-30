@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Row, Col } from 'antd';
 import { PageComponent } from '@/interface/Page';
 import { TagProps } from '@/interface/Data';
 import ArticleCard from './components/ArticleCard';
 import SsrQueueAnim from '@/components/SsrQueueAnim';
 import AboutMeCard from '@/components/AboutMeCard';
+import CatalogCard from './components/CatalogCard';
+import { AnchorProvider } from '@/components/MarkdownRenderer';
 import styles from './article-detail.less';
 
 interface ArticleProps {
@@ -21,27 +23,36 @@ interface ArticleDetailProps {
 }
 
 const ArticleDetail: PageComponent<ArticleDetailProps> = ({ article }) => {
+  const [transform, setTransform] = useState(true);
   return (
-    <SsrQueueAnim>
-      <Row gutter={20}>
-        <Col
-          span={24}
-          md={{
-            span: 17,
-          }}
-        >
-          <ArticleCard article={article} />
-        </Col>
-        <Col
-          span={0}
-          md={{
-            span: 7,
-          }}
-        >
-          <AboutMeCard />
-        </Col>
-      </Row>
-    </SsrQueueAnim>
+    <AnchorProvider>
+      <SsrQueueAnim
+        onEnd={() => {
+          setTransform(false);
+        }}
+        className={!transform ? styles.queueAnim : undefined}
+      >
+        <Row gutter={20}>
+          <Col
+            span={24}
+            md={{
+              span: 17,
+            }}
+          >
+            <ArticleCard article={article} />
+          </Col>
+          <Col
+            span={0}
+            md={{
+              span: 7,
+            }}
+          >
+            <AboutMeCard />
+            <CatalogCard />
+          </Col>
+        </Row>
+      </SsrQueueAnim>
+    </AnchorProvider>
   );
 };
 
