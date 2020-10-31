@@ -7,6 +7,7 @@ const SsrQueueAnim: React.FC<IProps<{}> & {
 }> = ({ children, id, ...props }) => {
   const win = useWindow();
   const location = useLocation();
+
   return win ? (
     <QueueAnim
       duration={1500}

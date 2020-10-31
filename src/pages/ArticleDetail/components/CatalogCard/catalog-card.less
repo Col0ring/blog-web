@@ -1,0 +1,12 @@
+.affix {
+  margin-top: 20px;
+  .catalogCard {
+    overflow: auto;
+    max-height: calc(100vh - 60px - 75px);
+    :global {
+      .ant-anchor-wrapper {
+        max-height: none !important;
+      }
+    }
+  }
+}

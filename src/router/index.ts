@@ -13,6 +13,18 @@ export const routes: IRoute[] = [
         component: '@/pages/ArticleDetail',
       },
       {
+        path: '/tags',
+        component: '@/pages/Tags',
+      },
+      {
+        path: '/tags/:name',
+        component: '@/pages/Tags',
+      },
+      {
+        path: '/me',
+        component: '@/pages/Me',
+      },
+      {
         path: '*',
         component: '@/pages/NotFound',
       },

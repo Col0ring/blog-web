@@ -48,24 +48,30 @@ export function parseTime(
   return time_str;
 }
 
+interface formatTimeOptions {
+  format?: string;
+  zh?: boolean;
+  complete?: boolean;
+}
+
 /**
  * @param {number} time
- * @param {string} option
- * @param {boolean} zh
- * @param {boolean} complete
- * @returns {string}
+ * @param {object} option
+ * @param {string} option.format
+ * @param {boolean} option.zh
+ * @param {boolean} option.complete
+ * @return {string} formatTime
  */
 export function formatTime(
   time: number,
-  option?: string,
-  zh: boolean = false,
-  complete: boolean = false,
-): string | null {
-  if (!option && !zh) {
+  option: formatTimeOptions = {},
+): string {
+  let { format, zh, complete } = option;
+  if (!format && !zh) {
     if (complete) {
-      option = '{y}-{m}-{d} {h}:{i}:{s}';
+      format = '{y}-{m}-{d} {h}:{i}:{s}';
     } else {
-      option = '{y}-{m}-{d}';
+      format = '{y}-{m}-{d}';
     }
   }
   if (('' + time).length === 10) {
@@ -91,8 +97,8 @@ export function formatTime(
   } else if (diff < 3600 * 24 * 4) {
     return '3天前';
   }
-  if (option) {
-    return parseTime(time, option);
+  if (format) {
+    return parseTime(time, format);
   } else {
     return complete
       ? d.getFullYear() +
