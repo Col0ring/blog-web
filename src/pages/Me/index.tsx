@@ -1,8 +1,9 @@
 import React from 'react';
 import SsrQueueAnim from '@/components/SsrQueueAnim';
 import { Col, Row, Timeline } from 'antd';
-import BlogCard from '@/components/BlogCard';
+import BlogCard, { TitleBlogCard } from '@/components/BlogCard';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
+import { PageComponent } from '@/interface/Page';
 import styles from './me.less';
 
 const content = `
@@ -22,7 +23,7 @@ const content = `
 
 `;
 
-const Me: React.FC = () => {
+const Me: PageComponent = () => {
   return (
     <SsrQueueAnim>
       <Row>
@@ -32,15 +33,9 @@ const Me: React.FC = () => {
             span: 17,
           }}
         >
-          <BlogCard
-            title={
-              <h1 className="c-text-center c-margin-tb-lg  c-text-xl c-text-primary">
-                关于我
-              </h1>
-            }
-          >
+          <TitleBlogCard title="关于我">
             <MarkdownRenderer content={content} />
-          </BlogCard>
+          </TitleBlogCard>
         </Col>
         <Col
           span={0}
@@ -49,13 +44,7 @@ const Me: React.FC = () => {
             span: 6,
           }}
         >
-          <BlogCard
-            title={
-              <div className="c-text-center c-margin-tb-lg  c-text-xl c-text-primary">
-                学习历程
-              </div>
-            }
-          >
+          <TitleBlogCard title="学习历程">
             <Timeline mode="alternate">
               <Timeline.Item label="2015-09-01">
                 Create a services
@@ -68,11 +57,15 @@ const Me: React.FC = () => {
                 Network problems being solved
               </Timeline.Item>
             </Timeline>
-          </BlogCard>
+          </TitleBlogCard>
         </Col>
       </Row>
     </SsrQueueAnim>
   );
+};
+
+Me.getInitialProps = async () => {
+  return {};
 };
 
 export default Me;

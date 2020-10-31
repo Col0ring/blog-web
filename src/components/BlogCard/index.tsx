@@ -35,4 +35,14 @@ const BlogCard: React.FC<BlogCardProps> = ({
   );
 };
 
+const TitleBlogCard: React.FC<BlogCardProps> = ({ title, ...props }) => {
+  return (
+    <BlogCard
+      title={<h1 className={styles.titleBlogCard}>{title}</h1>}
+      {...props}
+    ></BlogCard>
+  );
+};
+
+export { TitleBlogCard };
 export default BlogCard;
