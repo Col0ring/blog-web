@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu } from 'antd';
+import { Link, useLocation } from 'umi';
 import {
   FileTextOutlined,
   ReadOutlined,
@@ -22,11 +23,13 @@ export interface NavMenuProps {
 const renderMenu = () => {};
 
 const NavMenu: React.FC<NavMenuProps> = ({ mode = 'horizontal', onClick }) => {
+  const { pathname } = useLocation();
   return (
     <Menu
       triggerSubMenuAction="hover"
       onClick={onClick}
       mode={mode}
+      selectedKeys={[pathname]}
       style={{ border: 'none' }}
       className={styles.navMenu}
     >
@@ -42,7 +45,9 @@ const NavMenu: React.FC<NavMenuProps> = ({ mode = 'horizontal', onClick }) => {
         归档
       </Menu.Item>
       <Menu.Item icon={<FileTextOutlined />}>学习笔记</Menu.Item>
-      <Menu.Item icon={<UnorderedListOutlined />}>关于我</Menu.Item>
+      <Menu.Item key={'/me'} icon={<UnorderedListOutlined />}>
+        <Link to="/me">关于我</Link>
+      </Menu.Item>
     </Menu>
   );
 };
