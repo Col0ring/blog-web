@@ -10,11 +10,11 @@ const Archives: PageComponent = () => {
   return (
     <SsrQueueAnim>
       <GlobalHelmet title="归档" />
-      <Row gutter={[30, 10]}>
+      <Row>
         <Col
           span={24}
           md={{
-            span: 17,
+            span: 16,
           }}
         >
           <ArchivesCard />
@@ -22,6 +22,7 @@ const Archives: PageComponent = () => {
         <Col
           span={0}
           md={{
+            offset: 1,
             span: 7,
           }}
         >

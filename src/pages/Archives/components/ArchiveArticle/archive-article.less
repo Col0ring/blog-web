@@ -1,0 +1,37 @@
+@import '~@/variable.less';
+.ArchiveArticle {
+  display: flex;
+  padding: 15px 10px;
+  transition: box-shadow 0.3s linear;
+  border-radius: 1%;
+  box-shadow: 1px 0 0 0 #f0f0f0, 0 1px 0 0 #f0f0f0, 1px 1px 0 0 #f0f0f0,
+    inset 1px 0 0 0 #f0f0f0, inset 0 1px 0 0 #f0f0f0;
+
+  .image {
+    width: 80px;
+    height: 80px;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    width: 0;
+    padding: 10px;
+    line-height: 1.4em;
+    .title {
+      text-align: left;
+      overflow: hidden;
+      margin: 0;
+      display: -webkit-box; //将对象作为弹性伸缩盒子模型显示;
+      -webkit-line-clamp: 2; //设置文本显示两行
+      -webkit-box-orient: vertical; //从上到下排列子元素;
+    }
+    .time {
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-end;
+      color: #aaa;
+    }
+  }
+}

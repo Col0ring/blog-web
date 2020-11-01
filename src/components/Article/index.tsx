@@ -1,10 +1,11 @@
 import React from 'react';
-import { Image, Tag, Space } from 'antd';
+import { Tag, Space } from 'antd';
 import { FieldTimeOutlined } from '@ant-design/icons';
 import { Link, useHistory } from 'umi';
+import ArticleImage from '@/components/ArticleImage';
 import { formatTime } from '@/utils/time';
-import { ArticleProps, TagProps } from '@/interfaces/Data';
-import styles from './article-card.less';
+import { ArticleProps } from '@/interfaces/Data';
+import styles from './article.less';
 
 const ArticleCard: React.FC<ArticleProps> = ({
   title,
@@ -16,13 +17,13 @@ const ArticleCard: React.FC<ArticleProps> = ({
   const history = useHistory();
   return (
     <div
-      className={styles.articleCard}
+      className={styles.article}
       onClick={() => {
         history.push('/article/1');
       }}
     >
       {img && (
-        <Image
+        <ArticleImage
           preview={false}
           alt={title}
           className={styles.image}

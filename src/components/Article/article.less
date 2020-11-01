@@ -1,5 +1,5 @@
 @import '~@/variable.less';
-.articleCard {
+.article {
   display: flex;
   @media screen and (max-width: @screen-sm-min) {
     flex-direction: column;
@@ -20,14 +20,6 @@
     @media screen and (max-width: @screen-sm-min) {
       width: 100%;
       height: 220px;
-    }
-    :global {
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 8px;
-      }
     }
   }
   .content {

@@ -1,8 +1,9 @@
 import React from 'react';
-import BlogCard from '@/components/BlogCard';
-import { Timeline } from 'antd';
-import Article from '@/components/Article';
+import { TitleBlogCard } from '@/components/BlogCard';
+import { Timeline, Pagination } from 'antd';
+import ArchiveArticle from '../ArchiveArticle';
 import styles from './archives-card.less';
+
 const ArchivesCard: React.FC = () => {
   let key = 0;
   const articleList = new Array(8).fill(0).map(() => ({
@@ -30,15 +31,17 @@ const ArchivesCard: React.FC = () => {
     ],
   }));
   return (
-    <BlogCard>
-      <Timeline mode="right">
+    <TitleBlogCard title="归档">
+      <Timeline mode="left">
+        <Timeline.Item color="red">
+          <span className="c-text-xl c-text-primary">文章总览 - 40</span>
+        </Timeline.Item>
         {articleList.map(article => {
           return (
-            <Timeline.Item>
-              <Article
+            <Timeline.Item key={article.id}>
+              <ArchiveArticle
                 id={article.id}
                 time={article.time}
-                key={article.id}
                 img={article.img}
                 desc={article.desc}
                 title={article.title}
@@ -48,7 +51,10 @@ const ArchivesCard: React.FC = () => {
           );
         })}
       </Timeline>
-    </BlogCard>
+      <div className="c-flex c-jc-center c-margin-t-xl">
+        <Pagination total={59} showSizeChanger={false} pageSize={8} />
+      </div>
+    </TitleBlogCard>
   );
 };
 

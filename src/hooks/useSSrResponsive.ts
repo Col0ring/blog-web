@@ -7,7 +7,7 @@ interface Responsive {
   lg: boolean;
   xl: boolean;
 }
-const useSsrResonsive = (): Responsive => {
+const useSsrResponsive = (): Responsive => {
   const responsive = (useResponsive() as unknown) as Responsive;
   const win = useWindow();
   return responsive && win
@@ -21,4 +21,4 @@ const useSsrResonsive = (): Responsive => {
       };
 };
 
-export default useSsrResonsive;
+export default useSsrResponsive;
