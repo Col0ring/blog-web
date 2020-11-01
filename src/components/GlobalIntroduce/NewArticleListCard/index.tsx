@@ -5,12 +5,7 @@ import { FieldTimeOutlined, FileDoneOutlined } from '@ant-design/icons';
 import BlogCard from '@/components/BlogCard';
 import { formatTime } from '@/utils/time';
 import styles from './new-article-list-card.less';
-
-interface ArticleProps {
-  id: string | number;
-  title?: string;
-  time?: number;
-}
+import { ArticleProps } from '@/interfaces/Data';
 
 export interface NewArticleCardProps {
   newArticleList: ArticleProps[];
@@ -33,14 +28,13 @@ const NewArticleCard: React.FC<NewArticleCardProps> = ({ newArticleList }) => {
               <Link className="c-text-cut" to={'/article/' + article.id}>
                 {article.title}
               </Link>
-              {article.time && (
-                <div className={styles.time}>
-                  <Space size="small">
-                    <FieldTimeOutlined />
-                    <span>{formatTime(article.time)}</span>
-                  </Space>
-                </div>
-              )}
+
+              <div className={styles.time}>
+                <Space size="small">
+                  <FieldTimeOutlined />
+                  <span>{formatTime(article.time)}</span>
+                </Space>
+              </div>
             </li>
           );
         })}

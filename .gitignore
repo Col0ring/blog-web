@@ -19,3 +19,7 @@
 /src/.umi-production
 /src/.umi-test
 /.env.local
+
+# editor
+.idea
+.vscode

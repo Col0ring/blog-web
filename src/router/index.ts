@@ -18,7 +18,11 @@ export const routes: IRoute[] = [
       },
       {
         path: '/tags/:name',
-        component: '@/pages/Tags',
+        component: '@/pages/TagArticle',
+      },
+      {
+        path: '/archives',
+        component: '@/pages/Archives',
       },
       {
         path: '/me',

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Row, Col } from 'antd';
-import { PageComponent } from '@/interface/Page';
-import { TagProps } from '@/interface/Data';
+import { PageComponent } from '@/interfaces/Page';
+import { TagProps } from '@/interfaces/Data';
 import ArticleCard from './components/ArticleCard';
 import SsrQueueAnim from '@/components/SsrQueueAnim';
-import AboutMeCard from '@/components/AboutMeCard';
+import AboutMeCard from '@/components/GlobalIntroduce/AboutMeCard';
 import CatalogCard from './components/CatalogCard';
 import { AnchorProvider } from '@/components/MarkdownRenderer';
 import styles from './article-detail.less';

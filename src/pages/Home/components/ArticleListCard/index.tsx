@@ -1,11 +1,11 @@
 import React from 'react';
-import { Space, Pagination } from 'antd';
+import { Space } from 'antd';
 import { FireFilled } from '@ant-design/icons';
-import ArticleCard, { ArticleCardProps } from '@/components/ArticleCard';
+import ArticleList, { ArticleListProps } from '@/components/ArticleList';
 import BlogCard from '@/components/BlogCard';
 
 export interface ArticleListCardProps {
-  articleList: ArticleCardProps[];
+  articleList: ArticleListProps['articleList'];
 }
 
 const ArticleListCard: React.FC<ArticleListCardProps> = ({ articleList }) => {
@@ -18,22 +18,7 @@ const ArticleListCard: React.FC<ArticleListCardProps> = ({ articleList }) => {
         </Space>
       }
     >
-      {articleList.map(article => {
-        return (
-          <ArticleCard
-            id={article.id}
-            time={article.time}
-            key={article.id}
-            img={article.img}
-            desc={article.desc}
-            title={article.title}
-            tags={article.tags}
-          />
-        );
-      })}
-      <div className="c-flex c-jc-center c-margin-t-xl">
-        <Pagination total={50} showSizeChanger={false} pageSize={8} />
-      </div>
+      <ArticleList articleList={articleList} />
     </BlogCard>
   );
 };

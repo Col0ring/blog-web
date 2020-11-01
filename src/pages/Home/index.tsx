@@ -6,30 +6,27 @@ import ArticleListCard, {
 import TopArticleCard, {
   TopArticleCardProps,
 } from './components/TopArticleCard';
-import AboutMeCard from './components/AboutMeCard';
-import { PageComponent } from '@/interface/Page';
-import BulletinBoardCard from './components/BulletinBoardCard';
-import NewArticleListCard, {
-  NewArticleCardProps,
-} from './components/NewArticleListCard';
-import TagCard from './components/TagCard/index';
-import useSsrResonsive from '@/hooks/useSSrResponsive';
+import AboutMeCard from '@/components/GlobalIntroduce/AboutMeCard';
+import { PageComponent } from '@/interfaces/Page';
+import BulletinBoardCard from '@/components/GlobalIntroduce/BulletinBoardCard';
+import NewArticleListCard from '@/components/GlobalIntroduce/NewArticleListCard';
+import TagCard from '@/components/GlobalIntroduce/TagCard';
+import useSsrResponsive from '@/hooks/useSSrResponsive';
 import GlobalHelmet from '@/components/GlobalHelmet';
 import SsrQueueAnim from '@/components/SsrQueueAnim';
+import useLayout from '@/hooks/useLayout';
 
-type HomeProps = ArticleListCardProps &
-  NewArticleCardProps &
-  TopArticleCardProps;
+type HomeProps = ArticleListCardProps & TopArticleCardProps;
 
 const Home: PageComponent<HomeProps> = ({
   articleList = [],
-  newArticleList = [],
   topArticleList = [],
 }) => {
-  const { md } = useSsrResonsive();
+  const { md } = useSsrResponsive();
+  const { relatedTags, newArticleList } = useLayout();
   return (
     <SsrQueueAnim>
-      <GlobalHelmet></GlobalHelmet>
+      <GlobalHelmet />
       <Row key="home" gutter={[30, 10]}>
         <Col
           span={24}
@@ -40,7 +37,6 @@ const Home: PageComponent<HomeProps> = ({
           }}
         >
           {md && <TopArticleCard topArticleList={topArticleList} />}
-
           <ArticleListCard articleList={articleList} />
         </Col>
         <Col
@@ -96,30 +92,6 @@ Home.getInitialProps = async () => {
     articleList: new Array(8).fill(0).map(() => ({
       id: key++,
       time: Date.now(),
-      img:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-      title:
-        'TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle',
-      desc:
-        '我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介',
-      tags: [
-        {
-          color: 'red',
-          name: 'red',
-        },
-        {
-          color: 'green',
-          name: 'green',
-        },
-        {
-          color: 'cyan',
-          name: 'cyan',
-        },
-      ],
-    })),
-    newArticleList: new Array(8).fill(0).map(() => ({
-      id: key++,
-      time: Date.now() - 1000000000,
       img:
         'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
       title:

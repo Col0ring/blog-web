@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import classnames from 'classnames';
 import { Affix, Input } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
@@ -13,6 +13,7 @@ import useWindow from '@/hooks/useWindow';
 
 const Navbar: React.FC = () => {
   const [collapsed, setCollapsed] = useState(true);
+  const collapsedRef = useRef(collapsed);
   const { md, sm, xs } = useSsrResponsive();
   const [scrollDown, setScrollDown] = useState(false);
   const win = useWindow();
@@ -25,12 +26,12 @@ const Navbar: React.FC = () => {
   const scrollOptions = useMemo(() => {
     return {
       scrollDown: (value: number) => {
-        if (value > 60) {
+        if (value > 60 && collapsedRef.current) {
           setScrollDown(true);
         }
       },
       upDelay: 200,
-      scrollUp: (value: number) => {
+      scrollUp: () => {
         setScrollDown(false);
       },
       downDelay: 200,
@@ -42,6 +43,10 @@ const Navbar: React.FC = () => {
       setCollapsed(true);
     }
   }, [md]);
+
+  useEffect(() => {
+    collapsedRef.current = collapsed;
+  }, [collapsed]);
 
   return (
     <>
@@ -71,7 +76,7 @@ const Navbar: React.FC = () => {
       </Affix>
       {!md && (
         <DropdownMenu
-          style={{ zIndex: 100 }}
+          zIndex={100}
           onClose={() => {
             setCollapsed(true);
           }}

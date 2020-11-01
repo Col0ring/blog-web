@@ -1,5 +1,5 @@
 import SsrQueueAnim from '@/components/SsrQueueAnim';
-import { PageComponent } from '@/interface/Page';
+import { PageComponent } from '@/interfaces/Page';
 import React from 'react';
 import { Tag } from 'antd';
 import { TitleBlogCard } from '@/components/BlogCard';

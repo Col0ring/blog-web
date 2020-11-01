@@ -3,7 +3,7 @@ import SsrQueueAnim from '@/components/SsrQueueAnim';
 import { Col, Row, Timeline } from 'antd';
 import BlogCard, { TitleBlogCard } from '@/components/BlogCard';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
-import { PageComponent } from '@/interface/Page';
+import { PageComponent } from '@/interfaces/Page';
 import styles from './me.less';
 
 const content = `

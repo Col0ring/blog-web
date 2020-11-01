@@ -11,7 +11,7 @@ configResponsive({
   xl: 1200,
 });
 export const ssr = {
-  beforeRenderServer: async ({ context }: any) => {
+  beforeRenderServer: async ({ context }: GlobalObject) => {
     const { path } = context as {
       path: string;
       status: number;

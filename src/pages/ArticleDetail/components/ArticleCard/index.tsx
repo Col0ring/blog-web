@@ -2,7 +2,7 @@ import React from 'react';
 import { Space, Tag } from 'antd';
 import { UserOutlined, CalendarOutlined, TagOutlined } from '@ant-design/icons';
 import BlogCard from '@/components/BlogCard';
-import { TagProps } from '@/interface/Data';
+import { TagProps } from '@/interfaces/Data';
 import { formatTime } from '@/utils/time';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 import styles from './article-card.less';

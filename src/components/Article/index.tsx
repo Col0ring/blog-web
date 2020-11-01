@@ -3,19 +3,10 @@ import { Image, Tag, Space } from 'antd';
 import { FieldTimeOutlined } from '@ant-design/icons';
 import { Link, useHistory } from 'umi';
 import { formatTime } from '@/utils/time';
-import { TagProps } from '@/interface/Data';
+import { ArticleProps, TagProps } from '@/interfaces/Data';
 import styles from './article-card.less';
 
-export interface ArticleCardProps {
-  id: string | number;
-  time: number;
-  img?: string;
-  title: string;
-  desc?: string;
-  tags?: TagProps[];
-}
-
-const ArticleCard: React.FC<ArticleCardProps> = ({
+const ArticleCard: React.FC<ArticleProps> = ({
   title,
   desc,
   img,

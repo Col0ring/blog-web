@@ -2,7 +2,7 @@ import React from 'react';
 import { Space } from 'antd';
 import { UpSquareFilled } from '@ant-design/icons';
 import BlogCard from '@/components/BlogCard';
-import ArticleCard, { ArticleCardProps } from '@/components/ArticleCard';
+import ArticleCard, { ArticleCardProps } from '@/components/Article';
 
 export interface TopArticleCardProps {
   topArticleList: ArticleCardProps[];

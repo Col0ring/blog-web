@@ -38,11 +38,11 @@ const NavMenu: React.FC<NavMenuProps> = ({ mode = 'horizontal', onClick }) => {
       </Menu.Item>
       <Menu.SubMenu title="文章" icon={<ReadOutlined />}>
         <Menu.Item key="setting:3">Vue</Menu.Item>
-        <Menu.Item key="setting:3">React</Menu.Item>
+        <Menu.Item key="setting:5">React</Menu.Item>
         <Menu.Item key="setting:4">Webpack</Menu.Item>
       </Menu.SubMenu>
-      <Menu.Item key="a" icon={<HomeOutlined />}>
-        归档
+      <Menu.Item key="/archives" icon={<HomeOutlined />}>
+        <Link to="/archives">归档</Link>
       </Menu.Item>
       <Menu.Item icon={<FileTextOutlined />}>学习笔记</Menu.Item>
       <Menu.Item key={'/me'} icon={<UnorderedListOutlined />}>
