@@ -1,22 +1,24 @@
 import React from 'react';
 import { Pagination } from 'antd';
 import { ArticleProps } from '@/interfaces/Data';
-import ArticleCard from '@/components/Article';
+import Article from '@/components/Article';
 
 export interface ArticleListProps {
   articleList: ArticleProps[];
+  pagination?: boolean;
   total?: number;
 }
 
 const ArticleList: React.FC<ArticleListProps> = ({
   articleList,
+  pagination = true,
   total = 50,
 }) => {
   return (
     <>
       {articleList.map(article => {
         return (
-          <ArticleCard
+          <Article
             id={article.id}
             time={article.time}
             key={article.id}
@@ -27,7 +29,7 @@ const ArticleList: React.FC<ArticleListProps> = ({
           />
         );
       })}
-      {total && (
+      {pagination && total && (
         <div className="c-flex c-jc-center c-margin-t-xl">
           <Pagination total={total} showSizeChanger={false} pageSize={8} />
         </div>

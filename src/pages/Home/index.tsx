@@ -27,7 +27,7 @@ const Home: PageComponent<HomeProps> = ({
   return (
     <SsrQueueAnim>
       <GlobalHelmet />
-      <Row key="home" gutter={[30, 10]}>
+      <Row gutter={[30, 10]}>
         <Col
           span={24}
           order={2}

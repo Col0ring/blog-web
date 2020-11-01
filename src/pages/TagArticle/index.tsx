@@ -25,19 +25,15 @@ const TagArticle: PageComponent<TagArticleProps> = ({
       <Row gutter={[30, 10]}>
         <Col
           span={24}
-          order={2}
           md={{
             span: 17,
-            order: 1,
           }}
         >
           <TagArticleListCard tagArticleList={tagArticleList} />
         </Col>
         <Col
           span={0}
-          order={1}
           md={{
-            order: 2,
             span: 7,
           }}
         >

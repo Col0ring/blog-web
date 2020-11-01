@@ -2,10 +2,9 @@ import React from 'react';
 import { Space } from 'antd';
 import { UpSquareFilled } from '@ant-design/icons';
 import BlogCard from '@/components/BlogCard';
-import ArticleCard, { ArticleCardProps } from '@/components/Article';
-
+import ArticleList, { ArticleListProps } from '@/components/ArticleList';
 export interface TopArticleCardProps {
-  topArticleList: ArticleCardProps[];
+  topArticleList: ArticleListProps['articleList'];
 }
 
 const TopArticleCard: React.FC<TopArticleCardProps> = ({ topArticleList }) => {
@@ -18,19 +17,7 @@ const TopArticleCard: React.FC<TopArticleCardProps> = ({ topArticleList }) => {
         </Space>
       }
     >
-      {topArticleList.map(article => {
-        return (
-          <ArticleCard
-            id={article.id}
-            time={article.time}
-            key={article.id}
-            img={article.img}
-            desc={article.desc}
-            title={article.title}
-            tags={article.tags}
-          />
-        );
-      })}
+      <ArticleList pagination={false} articleList={topArticleList} />
     </BlogCard>
   );
 };

@@ -12,7 +12,7 @@ const GlobalHelmet: React.FC<GlobalHelmetProps> = ({
 }) => {
   return (
     <Helmet encodeSpecialCharacters={encodeSpecialCharacters}>
-      <title>{title ? title + '-' + setting.title : setting.title}</title>
+      <title>{title ? title + ' - ' + setting.title : setting.title}</title>
       {children}
     </Helmet>
   );
