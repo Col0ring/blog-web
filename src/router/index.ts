@@ -21,6 +21,14 @@ export const routes: IRoute[] = [
         component: '@/pages/TagArticle',
       },
       {
+        path: '/categories',
+        component: '@/pages/Categories',
+      },
+      {
+        path: '/categories/:name',
+        component: '@/pages/TagArticle',
+      },
+      {
         path: '/archives',
         component: '@/pages/Archives',
       },

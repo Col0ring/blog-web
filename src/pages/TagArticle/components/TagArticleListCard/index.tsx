@@ -8,7 +8,7 @@ const TagArticleListCard: React.FC<TagArticleListCardProps> = ({
   tagArticleList,
 }) => {
   return (
-    <ArticleBlogCard title={'Vue'} total={50}>
+    <ArticleBlogCard type="tag" title={'Vue'} total={50}>
       <ArticleList articleList={tagArticleList} />
     </ArticleBlogCard>
   );

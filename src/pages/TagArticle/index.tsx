@@ -21,8 +21,8 @@ const TagArticle: PageComponent<TagArticleProps> = ({
   }, [name]);
 
   return (
-    <SsrQueueAnim>
-      <Row gutter={[30, 10]}>
+    <SsrQueueAnim id="tagArticle">
+      <Row gutter={30}>
         <Col
           span={24}
           md={{

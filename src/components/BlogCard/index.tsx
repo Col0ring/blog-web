@@ -46,12 +46,14 @@ const TitleBlogCard: React.FC<BlogCardProps> = ({ title, ...props }) => {
 
 export const ArticleBlogCard: React.FC<BlogCardProps & {
   total: number;
-}> = ({ total, title, ...props }) => {
+  type?: 'category' | 'tag';
+}> = ({ total, title, type = 'tag', ...props }) => {
   return (
     <BlogCard
       title={
         <h1 className={styles.articleBlogCard}>
-          正在显示 {title} 标签下的 {total} 篇文章:
+          正在显示 {title} {type === 'tag' ? '标签' : '分类'}下的 {total}{' '}
+          篇文章:
         </h1>
       }
       {...props}

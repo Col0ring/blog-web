@@ -2,7 +2,6 @@ import React from 'react';
 import { TitleBlogCard } from '@/components/BlogCard';
 import { Timeline, Pagination } from 'antd';
 import ArchiveArticle from '../ArchiveArticle';
-import styles from './archives-card.less';
 
 const ArchivesCard: React.FC = () => {
   let key = 0;

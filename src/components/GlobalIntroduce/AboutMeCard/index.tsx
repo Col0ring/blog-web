@@ -17,19 +17,19 @@ const AboutMeCard: React.FC<AboutMeCardProps> = () => {
           />
           <span className={styles.name}>Col0ring</span>
           <span className={styles.desc}>
-            Don't aim for the perfect softsare.
+            Don't aim for the perfect software.
           </span>
         </div>
         <div className={styles.articleInfo}>
-          <Link to="/" className={styles.content}>
+          <Link to="/archives" className={styles.content}>
             <span>文章</span>
             <span>40</span>
           </Link>
-          <Link to="/" className={styles.content}>
+          <Link to="/tags" className={styles.content}>
             <span>标签</span>
             <span>40</span>
           </Link>
-          <Link to="/" className={styles.content}>
+          <Link to="/categories" className={styles.content}>
             <span>分类</span>
             <span>40</span>
           </Link>
