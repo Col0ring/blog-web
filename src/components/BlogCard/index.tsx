@@ -1,8 +1,10 @@
 import React from 'react';
+import { Spin } from 'antd';
 import classnames from 'classnames';
 import styles from './blog-card.less';
 
 export interface BlogCardProps {
+  loading?: boolean;
   className?: string;
   bodyClassName?: string;
   titleClassName?: string;
@@ -13,6 +15,7 @@ export interface BlogCardProps {
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({
+  loading = false,
   children,
   className,
   bodyClassName,
@@ -29,7 +32,9 @@ const BlogCard: React.FC<BlogCardProps> = ({
   return (
     <div className={blogCardClassName} style={style}>
       {title && <div className={cardTitleClassName}>{title}</div>}
-      <div className={cardBodyClassName}>{children}</div>
+      <Spin spinning={loading}>
+        <div className={cardBodyClassName}>{children}</div>
+      </Spin>
       {footer && <div className={cardFooterClassName}>{footer}</div>}
     </div>
   );

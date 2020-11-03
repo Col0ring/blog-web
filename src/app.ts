@@ -1,3 +1,4 @@
+import { history } from 'umi';
 import { matchRoutes, RouteConfig } from 'react-router-config';
 import { configResponsive } from 'ahooks';
 import { routes } from './router';
@@ -22,5 +23,11 @@ export const ssr = {
     ) {
       context.status = 404;
     }
+  },
+  modifyGetInitialPropsCtx: async (ctx: GlobalObject) => {
+    if (history) {
+      ctx.history = history;
+    }
+    return ctx;
   },
 };

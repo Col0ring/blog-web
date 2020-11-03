@@ -1,7 +1,7 @@
 import React from 'react';
-import { Pagination } from 'antd';
 import { ArticleProps } from '@/interfaces/Data';
 import Article from '@/components/Article';
+import BlogPagination from '@/components/BlogPagination';
 
 export interface ArticleListProps {
   articleList: ArticleProps[];
@@ -29,11 +29,7 @@ const ArticleList: React.FC<ArticleListProps> = ({
           />
         );
       })}
-      {pagination && total && (
-        <div className="c-flex c-jc-center c-margin-t-xl">
-          <Pagination total={total} showSizeChanger={false} pageSize={8} />
-        </div>
-      )}
+      {pagination && total && <BlogPagination total={total} />}
     </>
   );
 };

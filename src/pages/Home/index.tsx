@@ -1,11 +1,8 @@
 import React from 'react';
+import { useSelector } from 'umi';
 import { Row, Col } from 'antd';
-import ArticleListCard, {
-  ArticleListCardProps,
-} from './components/ArticleListCard';
-import TopArticleCard, {
-  TopArticleCardProps,
-} from './components/TopArticleCard';
+import ArticleListCard from './components/ArticleListCard';
+import TopArticleCard from './components/TopArticleCard';
 import AboutMeCard from '@/components/GlobalIntroduce/AboutMeCard';
 import { PageComponent } from '@/interfaces/Page';
 import BulletinBoardCard from '@/components/GlobalIntroduce/BulletinBoardCard';
@@ -16,14 +13,14 @@ import GlobalHelmet from '@/components/GlobalHelmet';
 import SsrQueueAnim from '@/components/SsrQueueAnim';
 import useLayout from '@/hooks/useLayout';
 
-type HomeProps = ArticleListCardProps & TopArticleCardProps;
-
-const Home: PageComponent<HomeProps> = ({
-  articleList = [],
-  topArticleList = [],
-}) => {
+const Home: PageComponent = () => {
   const { md } = useSsrResponsive();
   const { relatedTags, newArticleList } = useLayout();
+  const { home, loading } = useSelector(({ loading, home }) => ({
+    home,
+    loading: loading.effects['home/getHomeData'],
+  }));
+  const { articleList, topArticleList } = home;
   return (
     <SsrQueueAnim>
       <GlobalHelmet />
@@ -37,7 +34,7 @@ const Home: PageComponent<HomeProps> = ({
           }}
         >
           {md && <TopArticleCard topArticleList={topArticleList} />}
-          <ArticleListCard articleList={articleList} />
+          <ArticleListCard loading={loading} articleList={articleList} />
         </Col>
         <Col
           span={24}
@@ -62,57 +59,16 @@ const Home: PageComponent<HomeProps> = ({
   );
 };
 
-Home.getInitialProps = async () => {
-  let key = 0;
+Home.getInitialProps = async ({ history, store }) => {
+  const p = Number(history.location.query.p);
+  const page = !Number.isNaN(p) ? p : 1;
+  const data = await store.dispatch({
+    type: 'home/getHomeData',
+    page,
+  });
+  // dva 拦截
   return {
-    topArticleList: new Array(1).fill(0).map(() => ({
-      id: key++,
-      time: Date.now(),
-      img:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-      title:
-        'TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle',
-      desc:
-        '我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介',
-      tags: [
-        {
-          color: 'red',
-          name: 'red',
-        },
-        {
-          color: 'green',
-          name: 'green',
-        },
-        {
-          color: 'cyan',
-          name: 'cyan',
-        },
-      ],
-    })),
-    articleList: new Array(8).fill(0).map(() => ({
-      id: key++,
-      time: Date.now(),
-      img:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-      title:
-        'TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle',
-      desc:
-        '我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介',
-      tags: [
-        {
-          color: 'red',
-          name: 'red',
-        },
-        {
-          color: 'green',
-          name: 'green',
-        },
-        {
-          color: 'cyan',
-          name: 'cyan',
-        },
-      ],
-    })),
+    home: data,
   };
 };
 export default Home;

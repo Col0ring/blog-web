@@ -6,11 +6,16 @@ import BlogCard from '@/components/BlogCard';
 
 export interface ArticleListCardProps {
   articleList: ArticleListProps['articleList'];
+  loading?: boolean;
 }
 
-const ArticleListCard: React.FC<ArticleListCardProps> = ({ articleList }) => {
+const ArticleListCard: React.FC<ArticleListCardProps> = ({
+  articleList,
+  loading,
+}) => {
   return (
     <BlogCard
+      loading={loading}
       title={
         <Space className="c-text-xl">
           <FireFilled />

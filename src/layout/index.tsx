@@ -8,27 +8,16 @@ import { DynamicLoadWrapper } from '@/components/DynamicLoad';
 import Up from './Up';
 import styles from './index.less';
 import { PageComponent } from '@/interfaces/Page';
-import { LayoutProps } from '@/interfaces/Data';
-import { LayoutContext } from '@/hooks/useLayout';
 const Bg = memo(
   DynamicLoadWrapper({
     path: 'layout/Bg.tsx',
   }),
 );
 
-const Layout: PageComponent<LayoutProps> = ({
-  children,
-  relatedTags,
-  newArticleList,
-}) => {
+const Layout: PageComponent = ({ children }) => {
   const win = useWindow();
   return (
-    <LayoutContext.Provider
-      value={{
-        relatedTags,
-        newArticleList,
-      }}
-    >
+    <>
       <div className={styles.appWrapper}>
         <Bg />
         <Navbar />
@@ -37,38 +26,16 @@ const Layout: PageComponent<LayoutProps> = ({
         <Up />
       </div>
       {!win && <GlobalLoading />}
-    </LayoutContext.Provider>
+    </>
   );
 };
 
-Layout.getInitialProps = async () => {
-  let key = 0;
+Layout.getInitialProps = async ({ store }) => {
+  const data = await store.dispatch({
+    type: 'layout/getLayoutData',
+  });
   return {
-    newArticleList: new Array(8).fill(0).map(() => ({
-      id: key++,
-      time: Date.now() - 1000000000,
-      img:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-      title:
-        'TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle',
-      desc:
-        '我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介',
-      tags: [
-        {
-          color: 'red',
-          name: 'red',
-        },
-        {
-          color: 'green',
-          name: 'green',
-        },
-        {
-          color: 'cyan',
-          name: 'cyan',
-        },
-      ],
-    })),
-    relatedTags: [],
+    layout: data,
   };
 };
 

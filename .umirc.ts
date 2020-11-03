@@ -20,7 +20,9 @@ export default defineConfig({
     loading: '@/components/GlobalLoading',
   },
   ignoreMomentLocale: true,
-  dva: {},
+  dva: {
+    hmr: true,
+  },
   targets: false,
   routes: routes,
 });
