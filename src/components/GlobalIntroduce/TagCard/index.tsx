@@ -1,19 +1,14 @@
 import React from 'react';
-import { Tag, Space } from 'antd';
+import { Space } from 'antd';
 import { Link } from 'umi';
 import BlogCard from '@/components/BlogCard';
-
 import { TagFilled, RightOutlined } from '@ant-design/icons';
-
 import styles from './tag-card.less';
-
-interface TagsProps {
-  color?: string;
-  name: string;
-}
+import TagLinkList from '@/components/TagLinkList';
+import { TagProps } from '@/interfaces/Data';
 
 export interface TagCardProps {
-  tags?: TagsProps[];
+  tags: TagProps[];
 }
 
 const TagCard: React.FC<TagCardProps> = ({ tags = [] }) => {
@@ -33,17 +28,7 @@ const TagCard: React.FC<TagCardProps> = ({ tags = [] }) => {
       }
     >
       <div className={styles.tagCard}>
-        <Tag color="magenta">magenta</Tag>
-        <Tag color="red">red</Tag>
-        <Tag color="volcano">volcano</Tag>
-        <Tag color="orange">orange</Tag>
-        <Tag color="gold">gold</Tag>
-        <Tag color="lime">lime</Tag>
-        <Tag color="green">green</Tag>
-        <Tag color="cyan">cyan</Tag>
-        <Tag color="blue">blue</Tag>
-        <Tag color="geekblue">geekblue</Tag>
-        <Tag color="purple">purple</Tag>
+        <TagLinkList tags={tags} />
       </div>
     </BlogCard>
   );

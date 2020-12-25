@@ -8,7 +8,7 @@ export interface LazyLoadProps extends SpinProps {
   loading?: React.ReactNode;
 }
 const DefaultLoading: React.FC<SpinProps> = props => {
-  return <Spin tip="正在加载..." {...props}></Spin>;
+  return <Spin tip="正在加载..." {...props} />;
 };
 
 export interface DynamicLoadProps {

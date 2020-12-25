@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useLocation } from 'umi';
 import QueueAnim, { IProps } from 'rc-queue-anim';
 import useWindow from '@/hooks/useWindow';
@@ -22,4 +22,4 @@ const SsrQueueAnim: React.FC<IProps<{}> & {
   );
 };
 
-export default SsrQueueAnim;
+export default memo(SsrQueueAnim);

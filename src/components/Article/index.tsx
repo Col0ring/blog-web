@@ -5,6 +5,7 @@ import { Link, useHistory } from 'umi';
 import ArticleImage from '@/components/ArticleImage';
 import { formatTime } from '@/utils/time';
 import { ArticleProps } from '@/interfaces/Data';
+import TagLinkList from '@/components/TagLinkList';
 import styles from './article.less';
 
 const ArticleCard: React.FC<ArticleProps> = ({
@@ -35,25 +36,7 @@ const ArticleCard: React.FC<ArticleProps> = ({
         <h4 className={`${styles.title} c-text-cut`}>{title}</h4>
         <p className={`${styles.desc} c-text-cut`}>{desc}</p>
 
-        <div
-          className={styles.tags}
-          onClick={e => {
-            e.stopPropagation();
-          }}
-        >
-          {tags.map(tag => {
-            return (
-              <Tag key={tag.name} color={tag.color}>
-                <Link
-                  className={styles.link}
-                  to={tag.href || '/tags/' + tag.name}
-                >
-                  {tag.name}
-                </Link>
-              </Tag>
-            );
-          })}
-        </div>
+        <TagLinkList tags={tags} />
         <div className={styles.time}>
           <Space size="small">
             <FieldTimeOutlined />

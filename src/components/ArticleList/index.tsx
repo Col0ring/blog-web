@@ -17,17 +17,7 @@ const ArticleList: React.FC<ArticleListProps> = ({
   return (
     <>
       {articleList.map(article => {
-        return (
-          <Article
-            id={article.id}
-            time={article.time}
-            key={article.id}
-            img={article.img}
-            desc={article.desc}
-            title={article.title}
-            tags={article.tags}
-          />
-        );
+        return <Article {...article} key={article.id} />;
       })}
       {pagination && total && <BlogPagination total={total} />}
     </>

@@ -12,6 +12,7 @@ import useSsrResponsive from '@/hooks/useSSrResponsive';
 import GlobalHelmet from '@/components/GlobalHelmet';
 import SsrQueueAnim from '@/components/SsrQueueAnim';
 import useLayout from '@/hooks/useLayout';
+import { model } from '@/pages/Home/constants';
 
 const Home: PageComponent = () => {
   const { md } = useSsrResponsive();
@@ -48,7 +49,7 @@ const Home: PageComponent = () => {
 
           <BulletinBoardCard />
 
-          <TagCard />
+          <TagCard tags={relatedTags} />
 
           {!md && <TopArticleCard topArticleList={topArticleList} />}
 
@@ -68,7 +69,7 @@ Home.getInitialProps = async ({ history, store }) => {
   });
   // dva 拦截
   return {
-    home: data,
+    [model.namespace]: data,
   };
 };
 export default Home;

@@ -11,7 +11,7 @@ const GlobalIntroduce: React.FC = () => {
     <>
       <AboutMeCard />
       <BulletinBoardCard />
-      <TagCard />
+      <TagCard tags={relatedTags} />
       <NewArticleListCard newArticleList={newArticleList} />
     </>
   );

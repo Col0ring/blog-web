@@ -57,7 +57,7 @@ export const ArticleBlogCard: React.FC<BlogCardProps & {
     <BlogCard
       title={
         <h1 className={styles.articleBlogCard}>
-          正在显示 {title} {type === 'tag' ? '标签' : '分类'}下的 {total}{' '}
+          正在显示 {title} {type === 'tag' ? '标签' : '分类'}下的 {total}
           篇文章:
         </h1>
       }

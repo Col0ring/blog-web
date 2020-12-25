@@ -1,36 +1,20 @@
 import React from 'react';
-import { TitleBlogCard } from '@/components/BlogCard';
-import { Timeline, Pagination } from 'antd';
+import { Timeline } from 'antd';
 import ArchiveArticle from '../ArchiveArticle';
+import { TitleBlogCard } from '@/components/BlogCard';
+import BlogPagination from '@/components/BlogPagination';
+import { ArticleProps } from '@/interfaces/Data';
+export interface ArchivesCardProps {
+  articleList: ArticleProps[];
+  loading?: boolean;
+}
 
-const ArchivesCard: React.FC = () => {
-  let key = 0;
-  const articleList = new Array(8).fill(0).map(() => ({
-    id: key++,
-    time: Date.now(),
-    img:
-      'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    title:
-      'TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle',
-    desc:
-      '我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介',
-    tags: [
-      {
-        color: 'red',
-        name: 'red',
-      },
-      {
-        color: 'green',
-        name: 'green',
-      },
-      {
-        color: 'cyan',
-        name: 'cyan',
-      },
-    ],
-  }));
+const ArchivesCard: React.FC<ArchivesCardProps> = ({
+  articleList,
+  loading,
+}) => {
   return (
-    <TitleBlogCard title="归档">
+    <TitleBlogCard loading={loading} title="归档">
       <Timeline mode="left">
         <Timeline.Item color="red">
           <span className="c-text-xl c-text-primary">文章总览 - 40</span>
@@ -51,7 +35,7 @@ const ArchivesCard: React.FC = () => {
         })}
       </Timeline>
       <div className="c-flex c-jc-center c-margin-t-xl">
-        <Pagination total={59} showSizeChanger={false} pageSize={8} />
+        <BlogPagination total={59} />
       </div>
     </TitleBlogCard>
   );

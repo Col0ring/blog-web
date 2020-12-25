@@ -48,7 +48,32 @@ const LayoutModel: Model<LayoutModelState> = {
                 },
               ],
             })),
-            relatedTags: [],
+            relatedTags: [
+              {
+                color: 'red',
+                name: 'red',
+              },
+              {
+                color: 'green',
+                name: 'green',
+              },
+              {
+                color: 'cyan',
+                name: 'cyan',
+              },
+              {
+                color: 'geekblue',
+                name: 'geekblue',
+              },
+              {
+                color: 'magenta',
+                name: 'magenta',
+              },
+              {
+                color: 'orange',
+                name: 'orange',
+              },
+            ],
           });
         });
       });
